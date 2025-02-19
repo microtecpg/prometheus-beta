@@ -18,12 +18,11 @@ def string_transform(s: str) -> str:
     # Reverse the string
     transformed = transformed[::-1]
     
-    # Explicitly replace 'a' with '*' after reversal
-    result = ''
-    for char in transformed:
-        if char == 'a':
-            result += '*'
-        else:
-            result += char
+    # Manually replace 'a' with '*'
+    if 'a' in transformed:
+        # Split the string into parts around 'a'
+        parts = transformed.split('a')
+        # Rejoin with '*'
+        transformed = '*'.join(parts)
     
-    return result
+    return transformed
