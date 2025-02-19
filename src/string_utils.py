@@ -12,13 +12,16 @@ def string_transform(s: str) -> str:
     Returns:
         str: Transformed string
     """
-    # Remove spaces and convert to lowercase
-    transformed = s.replace(' ', '').lower()
+    # Remove spaces
+    transformed = s.replace(' ', '')
     
-    # Reverse the string
-    transformed = transformed[::-1]
+    # Convert to lowercase
+    transformed = transformed.lower()
     
     # Replace 'a' with '*'
     transformed = transformed.replace('a', '*')
+    
+    # Reverse the string
+    transformed = transformed[::-1]
     
     return transformed
