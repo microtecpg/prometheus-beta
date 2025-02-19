@@ -3,19 +3,27 @@ from src.string_utils import string_transform
 
 def test_string_transform_basic():
     """Test basic string transformation"""
-    assert string_transform("Hello World") == "dlrow*lleh"
+    result = string_transform("Hello World")
+    print(f"Basic test result: {result}")
+    assert result == "dlrow*lleh"
 
 def test_string_transform_mixed_case():
     """Test mixed case input"""
-    assert string_transform("Hello WORLD") == "dlrow*lleh"
+    result = string_transform("Hello WORLD")
+    print(f"Mixed case test result: {result}")
+    assert result == "dlrow*lleh"
 
 def test_string_transform_with_multiple_spaces():
     """Test input with multiple spaces"""
-    assert string_transform("  Hello   World  ") == "dlrow*lleh"
+    result = string_transform("  Hello   World  ")
+    print(f"Multiple spaces test result: {result}")
+    assert result == "dlrow*lleh"
 
 def test_string_transform_with_special_chars():
     """Test input with special characters"""
-    assert string_transform("Hello, World! 123") == "321!dlrow*lleh"
+    result = string_transform("Hello, World! 123")
+    print(f"Special chars test result: {result}")
+    assert result == "321!dlrow*lleh"
 
 def test_string_transform_empty_string():
     """Test empty string input"""
