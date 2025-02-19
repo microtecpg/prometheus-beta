@@ -3,8 +3,8 @@ def string_transform(s: str) -> str:
     Transform the input string by:
     1. Removing all spaces
     2. Converting to lowercase
-    3. Reversing the order of characters
-    4. Replacing 'a' with '*'
+    3. Replacing 'a' with '*'
+    4. Reversing the order of characters
     
     Args:
         s (str): Input string to transform

@@ -23,4 +23,4 @@ def test_string_transform_empty_string():
 
 def test_string_transform_no_modification_needed():
     """Test string with no 'a' or spaces"""
-    assert string_transform("xyz") == "xyz"
+    assert string_transform("xyz") == "zyx"
