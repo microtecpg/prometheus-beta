@@ -3,8 +3,8 @@ def string_transform(s: str) -> str:
     Transform the input string by:
     1. Removing all spaces
     2. Converting to lowercase
-    3. Reversing the order of characters
-    4. Replacing 'a' with '*'
+    3. Replacing 'a' with '*'
+    4. Reversing the order of characters
     
     Args:
         s (str): Input string to transform
@@ -12,13 +12,16 @@ def string_transform(s: str) -> str:
     Returns:
         str: Transformed string
     """
-    # Remove spaces and convert to lowercase
-    transformed = s.replace(' ', '').lower()
+    # Remove spaces
+    transformed = s.replace(' ', '')
     
-    # Reverse the string
+    # Convert to lowercase
+    transformed = transformed.lower()
+    
+    # Reverse the string first
     transformed = transformed[::-1]
     
-    # Explicitly replace 'a' with '*' after reversal
-    transformed = ''.join('*' if c == 'a' else c for c in transformed)
+    # Replace 'a' with '*' after reversal
+    transformed = transformed.replace('a', '*')
     
     return transformed
