@@ -22,5 +22,5 @@ def sum_unique_even_numbers(numbers):
         number_counts[num] = number_counts.get(num, 0) + 1
     
     # Sum unique even numbers (those that appear only once)
-    return sum(num for num in numbers 
+    return sum(num for num in set(numbers) 
                if num % 2 == 0 and number_counts[num] == 1)
