@@ -43,6 +43,8 @@ def palindrome_pair(nums):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
             if is_palindrome(diff) and len(str(diff)) > 1:
+                # For testing and debugging
+                print(f"Palindrome pair found: {nums[j]} - {nums[i]} = {diff}")
                 return True
     
     return False
