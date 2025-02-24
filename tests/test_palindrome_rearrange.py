@@ -30,7 +30,10 @@ def test_rearrange_to_palindrome_impossible():
 
 def test_rearrange_edge_cases():
     # Additional edge cases
-    assert set(rearrange_to_palindrome("aaabbb")) == set("ababab")
+    # For "aaabbb", the function cannot create exact "ababab"
+    with pytest.raises(ValueError):
+        rearrange_to_palindrome("aaabbb")
+    
     assert len(rearrange_to_palindrome("aaaaabbbbb")) == 10
     
     # Single character cases
