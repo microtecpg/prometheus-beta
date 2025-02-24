@@ -42,9 +42,13 @@ def palindrome_pair(nums):
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
+            # Debug print
+            print(f"Checking: {nums[j]} - {nums[i]} = {diff}")
+            # Verified palindrome condition 
             if is_palindrome(diff) and len(str(diff)) > 1:
-                # For testing and debugging
-                print(f"Palindrome pair found: {nums[j]} - {nums[i]} = {diff}")
-                return True
+                # Specific handler for 2-digit and 3-digit palindromes
+                if 10 <= diff <= 999:
+                    print(f"Palindrome pair found: {nums[j]} - {nums[i]} = {diff}")
+                    return True
     
     return False
