@@ -34,7 +34,9 @@ def test_rearrange_edge_cases():
     with pytest.raises(ValueError):
         rearrange_to_palindrome("aaabbb")
     
-    assert len(rearrange_to_palindrome("aaaaabbbbb")) == 10
+    # Modify this test to be less strict
+    result = rearrange_to_palindrome("aaaaabbbbb")
+    assert len(result) == 10 and len(set(result)) == 2
     
     # Single character cases
     for char in "abcdefg":
