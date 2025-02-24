@@ -55,36 +55,34 @@ def rearrange_to_palindrome(s: str) -> str:
     if s == s[::-1]:
         return s
     
+    # Strict check for palindrome possibility
+    if not can_form_palindrome(s):
+        raise ValueError("Cannot form a palindrome from the given characters")
+    
     # Count character frequencies
     char_counts = Counter(s)
     
-    # Special case for strings with multiple characters
-    if len(char_counts) == 1:
-        return s
-    
     # Prepare the palindrome components
-    chars_list = []
+    left_half = []
     odd_char = None
     
-    # Distribute characters 
+    # Sorted to ensure consistent output
     for char, count in sorted(char_counts.items()):
-        # Add floor division of count to handle partial palindrome
-        chars_list.extend([char] * (count // 2))
+        # Add half the count of each character
+        half_count = count // 2
+        left_half.extend([char] * half_count)
         
-        # Handle odd count character
+        # Check for odd count character
         if count % 2 != 0:
             if odd_char is not None:
-                # Try to use the last character for middle if more than one odd count
-                odd_char = char
-            elif odd_char is None:
-                odd_char = char
+                # More than one odd count character
+                raise ValueError("Cannot form a palindrome from the given characters")
+            odd_char = char
     
-    # Construct palindrome
-    # Create left and right halves
-    left_half = chars_list
-    right_half = chars_list[::-1]
+    # Create right half (reverse of left half)
+    right_half = left_half[::-1]
     
-    # Add middle character if exists
+    # Construct palindrome with optional middle character
     if odd_char is not None:
         return ''.join(left_half + [odd_char] + right_half)
     else:
