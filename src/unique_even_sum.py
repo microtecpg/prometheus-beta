@@ -16,9 +16,11 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Track the unique even numbers by creating a set of duplicates
-    duplicates = set(x for x in numbers if numbers.count(x) > 1)
+    # Create a dictionary to track occurrences of numbers
+    occurrences = {}
+    for num in numbers:
+        occurrences[num] = occurrences.get(num, 0) + 1
     
-    # Sum unique even numbers that don't appear in duplicates
+    # Sum unique even numbers (even numbers that appear exactly once)
     return sum(num for num in set(numbers) 
-               if num % 2 == 0 and num not in duplicates)
+               if num % 2 == 0 and occurrences[num] == 1)
