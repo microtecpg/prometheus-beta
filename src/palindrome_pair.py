@@ -13,7 +13,7 @@ def is_palindrome(num):
         return True
     
     str_num = str(abs(num))
-    return (str_num == str_num[::-1]) and len(str_num) > 1
+    return str_num == str_num[::-1] and len(str_num) > 1
 
 def palindrome_pair(nums):
     """
@@ -46,8 +46,11 @@ def palindrome_pair(nums):
     # Check all possible pairs for palindrome difference
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
+            # Check against right side of list
             diff = abs(nums[j] - nums[i])
-            if is_palindrome(diff):
+            
+            # Specific handling for multi-digit palindromes
+            if 10 <= diff <= 999 and is_palindrome(diff):
                 return True
     
     return False
