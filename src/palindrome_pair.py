@@ -8,7 +8,7 @@ def is_palindrome(num):
     Returns:
         bool: True if the number is a palindrome, False otherwise.
     """
-    return str(num) == str(num)[::-1]
+    return str(abs(num)) == str(abs(num))[::-1]
 
 def palindrome_pair(nums):
     """
@@ -38,11 +38,11 @@ def palindrome_pair(nums):
     if not all(isinstance(x, int) for x in nums):
         raise ValueError("All elements must be integers")
     
-    # Check all possible pairs for palindrome difference
+    # Optionally, restrict to palindrome differences of at least 2 chars
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
-            if is_palindrome(diff):
+            if is_palindrome(diff) and len(str(diff)) > 1:
                 return True
     
     return False
