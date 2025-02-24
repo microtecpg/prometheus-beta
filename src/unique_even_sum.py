@@ -16,11 +16,11 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Get the set of even numbers and track frequencies
-    even_freq = {}
+    # Track count of each number
+    count_map = {}
     for num in numbers:
-        if num % 2 == 0:
-            even_freq[num] = even_freq.get(num, 0) + 1
+        count_map[num] = count_map.get(num, 0) + 1
     
-    # Sum unique even numbers (those with frequency of 1)
-    return sum(num for num, freq in even_freq.items() if freq == 1)
+    # Sum of even numbers that appear exactly once
+    return sum(num for num in set(numbers) 
+               if num % 2 == 0 and count_map[num] == 1)
