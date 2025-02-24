@@ -51,34 +51,34 @@ def rearrange_to_palindrome(s: str) -> str:
     if len(s) <= 1:
         return s
     
+    # If the string is already a palindrome, return it
+    if s == s[::-1]:
+        return s
+    
     # Count character frequencies
     char_counts = Counter(s)
     
-    # Check if palindrome possible
-    if not can_form_palindrome(s):
-        raise ValueError("Cannot form a palindrome from the given characters")
-    
-    # Separate characters with even and odd counts
-    even_chars = []
+    # Find characters that can form two halves of palindrome
+    left_half = []
     odd_char = None
     
-    # Collect characters
     for char, count in sorted(char_counts.items()):
-        # Add even repeated characters to both sides
-        even_chars.extend([char] * (count // 2))
+        # Add even count of characters 
+        even_part = count // 2
+        left_half.extend([char] * even_part)
         
-        # Keep track of the single character with odd count (if exists)
+        # If odd count, remember the last character for the middle
         if count % 2 != 0:
+            if odd_char is not None:
+                # More than one odd count character means no palindrome
+                raise ValueError("Cannot form a palindrome from the given characters")
             odd_char = char
     
-    # Construct palindrome
-    # Left half of palindrome 
-    left_half = even_chars
-    
-    # Right half is the reverse of left half
+    # Create right half by reversing left half
     right_half = left_half[::-1]
     
-    # Combine: left half + optional middle character + right half
-    result = ''.join(left_half + ([odd_char] if odd_char else []) + right_half)
-    
-    return result
+    # Construct palindrome: left + optional middle + right
+    if odd_char is not None:
+        return ''.join(left_half + [odd_char] + right_half)
+    else:
+        return ''.join(left_half + right_half)
