@@ -42,7 +42,7 @@ def palindrome_pair(nums):
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
-            if is_palindrome(diff) and diff > 9:
+            if is_palindrome(diff) and 10 <= diff <= 999:
                 return True
     
     return False
