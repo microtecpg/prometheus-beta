@@ -47,19 +47,23 @@ def rearrange_to_palindrome(s: str) -> str:
         >>> rearrange_to_palindrome("aab")
         'aba'
     """
-    # First, check if a palindrome can be formed
-    if not can_form_palindrome(s):
-        raise ValueError("Cannot form a palindrome from the given characters")
+    # Handle empty string and single character cases
+    if len(s) <= 1:
+        return s
     
     # Count character frequencies
     char_counts = Counter(s)
+    
+    # Check if palindrome possible
+    if not can_form_palindrome(s):
+        raise ValueError("Cannot form a palindrome from the given characters")
     
     # Separate characters with even and odd counts
     even_chars = []
     odd_char = None
     
     # Collect characters
-    for char, count in char_counts.items():
+    for char, count in sorted(char_counts.items()):
         # Add even repeated characters to both sides
         even_chars.extend([char] * (count // 2))
         
@@ -68,8 +72,8 @@ def rearrange_to_palindrome(s: str) -> str:
             odd_char = char
     
     # Construct palindrome
-    # Left half of palindrome (sorted to ensure consistent output)
-    left_half = sorted(even_chars)
+    # Left half of palindrome 
+    left_half = even_chars
     
     # Right half is the reverse of left half
     right_half = left_half[::-1]
