@@ -16,6 +16,11 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Identify even numbers that appear only once
-    return sum(num for num in set(numbers) 
-               if num % 2 == 0 and numbers.count(num) == 1)
+    # Count occurrences of each number
+    count_map = {}
+    for num in numbers:
+        count_map[num] = count_map.get(num, 0) + 1
+    
+    # Sum even numbers that appear exactly once
+    return sum(num for num in count_map 
+               if num % 2 == 0 and count_map[num] == 1)
