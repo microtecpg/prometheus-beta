@@ -58,23 +58,25 @@ def rearrange_to_palindrome(s: str) -> str:
     # Count character frequencies
     char_counts = Counter(s)
     
-    # Find characters that can form two halves of palindrome
+    # Prepare the palindrome components
     left_half = []
+    right_half = []
     odd_char = None
     
+    # Sort characters to ensure consistent output
     for char, count in sorted(char_counts.items()):
-        # Add even count of characters 
-        even_part = count // 2
-        left_half.extend([char] * even_part)
+        # Add half the count of each character to left half
+        half_count = count // 2
+        left_half.extend([char] * half_count)
         
-        # If odd count, remember the last character for the middle
+        # If odd count, keep track of the odd character
         if count % 2 != 0:
             if odd_char is not None:
                 # More than one odd count character means no palindrome
                 raise ValueError("Cannot form a palindrome from the given characters")
             odd_char = char
     
-    # Create right half by reversing left half
+    # Right half is the reverse of left half
     right_half = left_half[::-1]
     
     # Construct palindrome: left + optional middle + right
