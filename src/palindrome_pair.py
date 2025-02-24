@@ -8,7 +8,12 @@ def is_palindrome(num):
     Returns:
         bool: True if the number is a palindrome, False otherwise.
     """
-    return str(abs(num)) == str(abs(num))[::-1] and len(str(abs(num))) > 1
+    # Check special case for 0 and 1-digit numbers 
+    if num == 0:
+        return True
+    
+    str_num = str(abs(num))
+    return (str_num == str_num[::-1]) and len(str_num) > 1
 
 def palindrome_pair(nums):
     """
