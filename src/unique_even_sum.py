@@ -18,11 +18,13 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Count occurrences of each number
-    counts = {}
+    # Track occurrences of each number
+    count = {}
     for num in numbers:
-        counts[num] = counts.get(num, 0) + 1
+        count[num] = count.get(num, 0) + 1
     
-    # Return sum of even numbers appearing exactly once
-    return sum(num for num in set(numbers) 
-               if num % 2 == 0 and counts[num] == 1)
+    # Sum unique even numbers (frequency is exactly 1)
+    return sum(
+        num for num in count 
+        if num % 2 == 0 and count[num] == 1
+    )
