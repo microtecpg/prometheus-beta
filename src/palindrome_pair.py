@@ -13,7 +13,7 @@ def is_palindrome(num):
 def palindrome_pair(nums):
     """
     Check if there exists a pair of numbers in a sorted list 
-    whose difference is a palindrome.
+    whose difference is a palindrome with at least 2 characters.
     
     Args:
         nums (list): A sorted list of integers.
@@ -26,10 +26,10 @@ def palindrome_pair(nums):
         ValueError: If list contains non-integer elements.
     
     Example:
-        >>> palindrome_pair([1, 2, 3, 4, 5])  # 4 - 3 = 1 is a palindrome
-        True
-        >>> palindrome_pair([1, 2, 3, 4, 6])  # No palindrome difference
+        >>> palindrome_pair([1, 2, 3, 4, 5])  # 4 - 3 = 1 is not a palindrome
         False
+        >>> palindrome_pair([10, 20, 30, 40])  # 30 - 20 = 10 is a palindrome
+        True
     """
     # Validate input
     if not isinstance(nums, list):
@@ -38,7 +38,7 @@ def palindrome_pair(nums):
     if not all(isinstance(x, int) for x in nums):
         raise ValueError("All elements must be integers")
     
-    # Optionally, restrict to palindrome differences of at least 2 chars
+    # Check all possible pairs for palindrome difference of 2+ chars
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
