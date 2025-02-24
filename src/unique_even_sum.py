@@ -2,6 +2,8 @@ def sum_unique_even_numbers(numbers):
     """
     Calculate the sum of unique even numbers in the given array.
 
+    A unique even number is an even number that appears exactly once in the list.
+
     Args:
         numbers (list): A list of integers to process.
 
@@ -16,13 +18,11 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Carefully track the count of each even number
-    even_counts = {}
-    
-    # First pass: count even numbers
+    # Count occurrences of each number
+    counts = {}
     for num in numbers:
-        if num % 2 == 0:
-            even_counts[num] = even_counts.get(num, 0) + 1
+        counts[num] = counts.get(num, 0) + 1
     
-    # Second pass: sum unique even numbers
-    return sum(num for num, count in even_counts.items() if count == 1)
+    # Return sum of even numbers appearing exactly once
+    return sum(num for num in set(numbers) 
+               if num % 2 == 0 and counts[num] == 1)
