@@ -8,6 +8,8 @@ def test_is_palindrome():
     assert is_palindrome(0) == True
     assert is_palindrome(121) == True
     assert is_palindrome(123) == False
+    assert is_palindrome(-11) == True  # checks absolute value
+    assert is_palindrome(-123) == False
 
 def test_palindrome_pair_basic():
     """Test basic scenarios for palindrome_pair."""
@@ -33,3 +35,17 @@ def test_palindrome_pair_negative_numbers():
     """Test cases with negative numbers."""
     assert palindrome_pair([-5, -4, -3, -2, -1]) == True  # -3 - (-4) = 1 is palindrome
     assert palindrome_pair([-11, 0, 11]) == True  # 11 - 0 = 11 is palindrome
+    
+    # More precise test for the problematic case
+    def count_palindrome_pairs(nums):
+        """Count how many pairs have palindrome differences."""
+        count = 0
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                diff = abs(nums[j] - nums[i])
+                if str(diff) == str(diff)[::-1]:
+                    count += 1
+        return count
+    
+    # Verify the test case 
+    assert 0 == count_palindrome_pairs([1, 2, 3, 4, 6])
