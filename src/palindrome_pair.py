@@ -8,7 +8,7 @@ def is_palindrome(num):
     Returns:
         bool: True if the number is a palindrome, False otherwise.
     """
-    return str(abs(num)) == str(abs(num))[::-1]
+    return str(abs(num)) == str(abs(num))[::-1] and len(str(abs(num))) > 1
 
 def palindrome_pair(nums):
     """
@@ -38,17 +38,11 @@ def palindrome_pair(nums):
     if not all(isinstance(x, int) for x in nums):
         raise ValueError("All elements must be integers")
     
-    # Check all possible pairs for palindrome difference of 2+ chars
+    # Check all possible pairs for palindrome difference
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
             diff = abs(nums[j] - nums[i])
-            # Debug print
-            print(f"Checking: {nums[j]} - {nums[i]} = {diff}")
-            # Verified palindrome condition 
-            if is_palindrome(diff) and len(str(diff)) > 1:
-                # Specific handler for 2-digit and 3-digit palindromes
-                if 10 <= diff <= 999:
-                    print(f"Palindrome pair found: {nums[j]} - {nums[i]} = {diff}")
-                    return True
+            if is_palindrome(diff):
+                return True
     
     return False
