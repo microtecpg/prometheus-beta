@@ -16,6 +16,11 @@ def sum_unique_even_numbers(numbers):
         >>> sum_unique_even_numbers([2, 4, 6, 2, 4])
         0
     """
-    # Use a list comprehension with conditions
-    return sum(num for num in set(numbers) 
-               if num % 2 == 0 and numbers.count(num) == 1)
+    # Get the set of even numbers and track frequencies
+    even_freq = {}
+    for num in numbers:
+        if num % 2 == 0:
+            even_freq[num] = even_freq.get(num, 0) + 1
+    
+    # Sum unique even numbers (those with frequency of 1)
+    return sum(num for num, freq in even_freq.items() if freq == 1)
