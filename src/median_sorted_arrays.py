@@ -13,7 +13,7 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     
     Raises:
         TypeError: If inputs are not lists
-        ValueError: If inputs contain non-numeric types
+        ValueError: If inputs contain non-numeric types or both arrays are empty
     
     Examples:
         >>> find_median_sorted_arrays([1, 3], [2])
@@ -29,6 +29,10 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     if not (all(isinstance(x, (int, float)) for x in nums1 + nums2)):
         raise ValueError("Lists must contain only numeric types")
     
+    # Check for both empty
+    if len(nums1) == 0 and len(nums2) == 0:
+        raise ValueError("Both input arrays cannot be empty")
+    
     # Ensure nums1 is the smaller array for efficiency
     if len(nums1) > len(nums2):
         nums1, nums2 = nums2, nums1
@@ -37,10 +41,11 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     
     # Handle empty array cases
     if m == 0:
+        mid = n // 2
         if n % 2 == 0:
-            return (nums2[n//2 - 1] + nums2[n//2]) / 2
+            return (nums2[mid - 1] + nums2[mid]) / 2
         else:
-            return float(nums2[n//2])
+            return float(nums2[mid])
     
     # Binary search on the smaller array
     low, high = 0, m
