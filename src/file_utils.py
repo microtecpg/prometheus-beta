@@ -15,10 +15,15 @@ def get_file_creation_date(file_path):
     Raises:
         FileNotFoundError: If the file does not exist.
         PermissionError: If there's no permission to access the file.
+        RuntimeError: If the path is a directory.
     """
     # Validate file existence first
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")
+    
+    # Check if path is a directory
+    if os.path.isdir(file_path):
+        raise RuntimeError(f"Cannot get creation date for directory: {file_path}")
     
     # Platform-specific file creation time retrieval
     system = platform.system()
